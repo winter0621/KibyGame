@@ -1,4 +1,9 @@
 package com.kirby.game;
 
-public class KirbyGame {
+import com.badlogic.gdx.Game;
+
+public class KirbyGame extends Game {
+    @Override
+    public void create() {
+    }
 }
