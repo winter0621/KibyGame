@@ -10,7 +10,7 @@
 
 ## 1. 目的
 
-统一 Box2D 中 `Body` / `Fixture` 的 `userData` 用法，让 `CollisionHandler`（`ContactListener`）能**稳定、低耦合**地识别「碰撞双方是谁」，从而把碰撞事件正确分发到对应逻辑（落地、踩怪、受伤、吐星等，对应 FR-07 / FR-11~13）。
+统一 Box2D 中 `Body` / `Fixture` 的 `userData` 用法，让 `CollisionHandler`（`ContactListener`）能**稳定、低耦合**地识别「碰撞双方是谁」，从而把碰撞事件正确分发到对应逻辑（落地、踩怪、受伤、吐星等，对应 F04 / F06~F08）。
 
 ---
 
@@ -35,11 +35,11 @@ public enum BodyTag {
     ENEMY,       // 敌人本体
     GROUND,      // 地形（地面/墙壁，来自 Tiled 静态刚体）
     SENSOR_FEET, // 脚部传感器：同时用于「判定在地面」与「踩怪」
-    STAR         // 吐出的星星弹丸（FR-11，后期）
+    STAR         // 吐出的星星弹丸（F06，后期）
 }
 ```
 
-> 吸入（FR-10）不建传感器，用每帧「朝向 + 距离 + 角度」检测，故不在枚举中。
+> 吸入（F06）不建传感器，用每帧「朝向 + 距离 + 角度」检测，故不在枚举中。
 
 ---
 
@@ -61,12 +61,12 @@ public enum BodyTag {
 
 | Fixture A | Fixture B | 处理逻辑 | 关联需求 |
 | --- | --- | --- | --- |
-| PLAYER | GROUND | 玩家落地 / 贴墙 | FR-07 |
-| PLAYER | ENEMY | 直接接触 → 受伤（踩怪走 SENSOR_FEET） | FR-13 |
-| ENEMY | GROUND | 敌人贴地（巡逻边界可在此转向） | FR-09 |
-| SENSOR_FEET | GROUND | 玩家处于地面（控制跳跃/漂浮） | FR-04 / FR-05 |
-| SENSOR_FEET | ENEMY | 踩怪消灭 | FR-12 |
-| STAR | ENEMY | 星星命中敌人 → 消灭 | FR-11 |
+| PLAYER | GROUND | 玩家落地 / 贴墙 | F04 |
+| PLAYER | ENEMY | 直接接触 → 受伤（踩怪走 SENSOR_FEET） | F08 |
+| ENEMY | GROUND | 敌人贴地（巡逻边界可在此转向） | F05 |
+| SENSOR_FEET | GROUND | 玩家处于地面（控制跳跃/漂浮） | F03 |
+| SENSOR_FEET | ENEMY | 踩怪消灭 | F07 |
+| STAR | ENEMY | 星星命中敌人 → 消灭 | F06 |
 
 ---
 

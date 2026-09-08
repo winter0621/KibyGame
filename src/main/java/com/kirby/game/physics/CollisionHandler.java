@@ -33,17 +33,17 @@ public class CollisionHandler implements ContactListener {
 
         // 碰撞分发表（见 userData标记规范.md §5）
         if (tagA == BodyTag.PLAYER && tagB == BodyTag.GROUND) {
-            // 玩家落地 / 贴墙（FR-07）—— 待 Player 实现后填充
+            // 玩家落地 / 贴墙（F04）—— 待 Player 实现后填充
         } else if (tagA == BodyTag.PLAYER && tagB == BodyTag.ENEMY) {
-            // 玩家与敌人直接接触 -> 受伤（FR-13）；踩怪由 SENSOR_FEET 分支处理
+            // 玩家与敌人直接接触 -> 受伤（F08）；踩怪由 SENSOR_FEET 分支处理
         } else if (tagA == BodyTag.ENEMY && tagB == BodyTag.GROUND) {
-            // 敌人贴地 / 碰到平台边缘（FR-09 巡逻转向）
+            // 敌人贴地 / 碰到平台边缘（F05 巡逻转向）
         } else if (tagA == BodyTag.GROUND && tagB == BodyTag.SENSOR_FEET) {
-            // 脚部传感器落地 -> 玩家处于地面，可跳跃 / 结束漂浮（FR-04/05）
+            // 脚部传感器落地 -> 玩家处于地面，可跳跃 / 结束漂浮（F03）
         } else if (tagA == BodyTag.ENEMY && tagB == BodyTag.SENSOR_FEET) {
-            // 脚部传感器碰到敌人 -> 踩怪消灭（FR-12）
+            // 脚部传感器碰到敌人 -> 踩怪消灭（F07）
         } else if (tagA == BodyTag.ENEMY && tagB == BodyTag.STAR) {
-            // 星星命中敌人 -> 消灭（FR-11）
+            // 星星命中敌人 -> 消灭（F06）
         }
     }
 
